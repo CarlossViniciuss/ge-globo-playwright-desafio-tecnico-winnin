@@ -1,6 +1,7 @@
 # Dependências
 node_modules/
-Playwright
+
+#Playwright
 /test-results/
 /playwright-report/
 /blob-report/

@@ -1,22 +1,40 @@
 {
-    "compilerOptions": {
-      "target": "ES2021",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "outDir": "./dist",
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      "strict": true,
-      "skipLibCheck": true,
-      "baseUrl": ".",
-      "paths": {
-        "@pages/*": ["tests/pages/*"],
-        "@specs/*": ["tests/specs/*"]
-      },
-      "resolveJsonModule": true,
-      "types": ["node", "@playwright/test"]
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": [
+        "tests/pages/*"
+      ],
+      "@specs/*": [
+        "tests/specs/*"
+      ],
+      "@support/*": [
+        "tests/features/support/*"
+      ],
+      "@steps/*": [
+        "tests/steps/*"
+      ]
     },
-    "include": ["tests/**/*"],
-    "exclude": ["node_modules"]
-  }
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+      "@cucumber/cucumber",
+      "@playwright/test"
+    ]
+  },
+  "include": [
+    "tests/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
