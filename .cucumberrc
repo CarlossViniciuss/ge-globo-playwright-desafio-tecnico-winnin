@@ -1,0 +1,9 @@
+{
+    "stepDefinitions": [
+        "tests/features/step_definitions/**/*.ts"
+    ],
+    "features": [
+        "tests/features/**/*.feature"
+    ],
+    "language": "pt"
+} 
