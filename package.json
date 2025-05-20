@@ -1,0 +1,22 @@
+{
+  "name": "ge-globo-playwright-desafio-tecnico-winnin",
+  "version": "1.0.0",
+  "description": "Testes automatizados para o site ge.globo.com usando Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "keywords": ["playwright", "testing", "automation"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.19",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0"
+  }
+}
