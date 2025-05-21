@@ -1,8 +1,14 @@
-import { Before, After } from '@cucumber/cucumber';
+import { Before, After, BeforeAll, AfterAll } from '@cucumber/cucumber';
 import { CustomWorld } from './world';
 import { Route } from '@playwright/test';  // ✅ Importa Route para tipagem
+import { logger } from '../../utils/logger';
+
+BeforeAll(async function() {
+  logger.info('🚀 Iniciando execução dos testes');
+});
 
 Before(async function (this: CustomWorld) {
+  logger.step('Abrindo navegador e configurando ambiente');
   await this.openBrowser();
 
   await this.page.route('**/*', (route: Route) => {
@@ -23,7 +29,7 @@ Before(async function (this: CustomWorld) {
     ];
 
     if (blockList.some(domain => url.includes(domain))) {
-      console.log(`🚫 Bloqueando requisição: ${url}`);
+      logger.debug(`Bloqueando requisição de anúncio: ${url}`);
       route.abort();
     } else {
       route.continue();
@@ -32,5 +38,10 @@ Before(async function (this: CustomWorld) {
 });
 
 After(async function (this: CustomWorld) {
+  logger.step('Fechando navegador');
   await this.closeBrowser();
+});
+
+AfterAll(async function() {
+  logger.info('✨ Execução dos testes finalizada');
 });

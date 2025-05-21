@@ -112,6 +112,17 @@ Só não implementei pois ele não estava listado explicitamente entre os crité
 
 ---
 
+# Logs
+
+Foi implementado um sistema de logs mais informativos e ajudarão tanto no desenvolvimento local quanto na análise de falhas no CI. Você verá:
+* 🚀 Início e fim da execução dos testes
+* 🔹 Cada step sendo executado
+* ✅ Resultados de sucesso
+* ❌ Erros (quando ocorrerem)
+* 🔍 Informações de debug (quando habilitado)
+
+---
+
 ## 🛠️ Como executar os testes localmente
 
 ### ✅ Pré-requisitos:
@@ -133,6 +144,9 @@ npx playwright install --with-deps
 
 # Execute os testes
 npx cucumber-js
+
+# Executar os testes em modo debug
+DEBUG=true npx cucumber-js
 ```
 
 ## 🤖 Execução automatizada (CI)
