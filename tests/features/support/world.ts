@@ -1,5 +1,7 @@
 import { setWorldConstructor, World, IWorldOptions } from '@cucumber/cucumber';
 import { Browser, Page, chromium, BrowserContext } from 'playwright';
+import { HomePage } from '../../pages/HomePage';
+import { NoticiaPage } from '../../pages/NoticiaPage';
 
 export class CustomWorld extends World {
   browser!: Browser;
@@ -8,6 +10,9 @@ export class CustomWorld extends World {
   newPage?: Page;
   noticiaUrl?: string;
 
+  homePage!: HomePage;
+  noticiaPage!: NoticiaPage;
+
   constructor(options: IWorldOptions) {
     super(options);
   }
@@ -15,7 +20,10 @@ export class CustomWorld extends World {
   async openBrowser() {
     this.browser = await chromium.launch({ headless: false }); // troque pra true se for CI
     this.context = await this.browser.newContext();
-    this.page = await this.browser.newPage();
+    this.page = await this.context.newPage();
+
+    this.homePage = new HomePage(this.page);
+    this.noticiaPage = new NoticiaPage(this.page);
   }
 
   async closeBrowser() {
