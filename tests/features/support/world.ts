@@ -18,7 +18,7 @@ export class CustomWorld extends World {
   }
 
   async openBrowser() {
-    this.browser = await chromium.launch({ headless: false }); // troque pra true se for CI
+    this.browser = await chromium.launch({ headless: process.env.CI ? true : false })
     this.context = await this.browser.newContext();
     this.page = await this.context.newPage();
 
