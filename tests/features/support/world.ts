@@ -1,17 +1,17 @@
 import { setWorldConstructor, World, IWorldOptions } from '@cucumber/cucumber';
 import { Browser, Page, chromium, BrowserContext } from 'playwright';
 import { HomePage } from '../../pages/HomePage';
-import { NoticiaPage } from '../../pages/NoticiaPage';
+import { NewsPage } from '../../pages/NoticiaPage';
 
 export class CustomWorld extends World {
   browser!: Browser;
   context!: BrowserContext;
   page!: Page;
   newPage?: Page;
-  noticiaUrl?: string;
+  newsUrl?: string;
 
   homePage!: HomePage;
-  noticiaPage!: NoticiaPage;
+  newsPage!: NewsPage;
 
   constructor(options: IWorldOptions) {
     super(options);
@@ -23,7 +23,7 @@ export class CustomWorld extends World {
     this.page = await this.context.newPage();
 
     this.homePage = new HomePage(this.page);
-    this.noticiaPage = new NoticiaPage(this.page);
+    this.newsPage = new NewsPage(this.page);
   }
 
   async closeBrowser() {

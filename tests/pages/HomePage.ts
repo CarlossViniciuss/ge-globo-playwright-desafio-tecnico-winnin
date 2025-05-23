@@ -11,11 +11,11 @@ export class HomePage {
     this.blocosNoticias = page.locator('.bastian-feed-item[data-type="materia"]');
   }
 
-  async acessar() {
+  async access() {
     await this.page.goto('https://ge.globo.com');
   }
 
-  async contarNoticiasMinimas(qtd: number) {
+  async tellMinimalNews(qtd: number) {
     let tentativas = 0;
     const maxTentativas = 10;
 
@@ -34,7 +34,7 @@ export class HomePage {
     expect(quantidadeFinal).toBeGreaterThanOrEqual(qtd);
   }
 
-  async validarEstruturaNoticias() {
+  async validateStructureNews() {
     const total = await this.noticiasLocator.count();
 
     for (let i = 0; i < total; i++) {
@@ -56,8 +56,15 @@ export class HomePage {
     }
   }
 
-  async clicarPrimeiraNoticia(): Promise<string> {
+  async clickFirstNews(): Promise<string> {
+    await this.page.evaluate(() => {
+      window.scrollBy(0, window.innerHeight);
+    });
+
+    await this.page.waitForTimeout(1500);
+
     const totalBlocos = await this.blocosNoticias.count();
+    console.log(`📰 Total de blocos encontrados: ${totalBlocos}`);
 
     for (let i = 0; i < totalBlocos; i++) {
       const bloco = this.blocosNoticias.nth(i);
@@ -72,18 +79,23 @@ export class HomePage {
       if (existeLink === 0) continue;
 
       const url = await link.getAttribute('href');
+      console.log(`🔗 Bloco ${i + 1} URL: ${url}`);
 
       if (url && url.startsWith('https://ge.globo.com') && url.includes('/noticia/')) {
+        console.log(`✅ Notícia válida encontrada: ${url}`);
+
         const elementHandle = await link.elementHandle();
         if (elementHandle) {
           await this.page.evaluate((el: Element) => el.removeAttribute('target'), elementHandle);
         }
 
-        await Promise.all([
-          this.page.waitForNavigation({ waitUntil: 'load', timeout: 10000 }),
-          link.click({ force: true }),
-        ]);
+        console.log('🖱️ Clicando no link da notícia...');
+        await link.click({ force: true });
 
+        console.log('⌛ Aguardando seletor de título da notícia...');
+        await this.page.waitForSelector('h1');
+
+        console.log(`✅ Navegação concluída: ${this.page.url()}`);
         return url;
       }
     }

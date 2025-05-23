@@ -1,14 +1,14 @@
 import { Page, expect } from '@playwright/test';
 
-export class NoticiaPage {
+export class NewsPage {
   readonly page: Page;
 
   constructor(page: Page) {
     this.page = page;
   }
 
-  async validarRedirecionamento(urlEsperada: string) {
-    const urlAtual = this.page.url();
-    expect(urlAtual).toContain(urlEsperada);
+  async validateRedirection(urlExpected: string) {
+    const currenturl = this.page.url();
+    expect(currenturl).toContain(urlExpected);
   }
 }
