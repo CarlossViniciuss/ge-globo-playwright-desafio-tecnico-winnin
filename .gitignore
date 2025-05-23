@@ -7,6 +7,10 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 
+# Relatórios Cucumber
+cucumber_report.html
+cucumber_report.json
+
 # IDE
 .idea/
 .vscode/

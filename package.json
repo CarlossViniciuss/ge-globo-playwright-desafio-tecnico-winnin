@@ -8,7 +8,9 @@
     "test:headed": "cucumber-js --format @cucumber/pretty-formatter",
     "test:debug": "cucumber-js --format @cucumber/pretty-formatter --tags @debug",
     "test:ui": "playwright test --ui",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "report:generate": "node generate-html-report.js",
+    "report:open": "open cucumber_report.html"
   },
   "keywords": [
     "playwright",
@@ -24,6 +26,7 @@
     "@types/node": "^22.15.19",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
+    "cucumber-html-reporter": "^7.2.0",
     "eslint": "^9.27.0",
     "prettier": "^3.0.0",
     "ts-node": "^10.9.2",

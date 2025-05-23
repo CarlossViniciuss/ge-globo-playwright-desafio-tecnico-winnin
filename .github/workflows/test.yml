@@ -1,4 +1,4 @@
-name: Run Playwright Cucumber Tests
+name: Run Playwright Cucumber Tests and Deploy Report
 
 on:
   push:
@@ -14,21 +14,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
+      - name: 🕹️ Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Cucumber Tests
-        run: npx cucumber-js
+      - name: 🧪 Run Cucumber Tests
+        run: npm run test
         env:
           CI: true
+
+      - name: 📝 Generate HTML Report
+        run: npm run report:generate
+
+      - name: 🚀 Deploy Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports/html
