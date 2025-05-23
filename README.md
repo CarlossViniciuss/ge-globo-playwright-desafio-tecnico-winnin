@@ -150,11 +150,16 @@ DEBUG=true npx cucumber-js
 ```
 
 ## 🤖 Execução automatizada (CI)
-Este projeto está configurado para executar automaticamente no GitHub Actions a cada push ou pull request na branch main ou feature/*.
+Este projeto está configurado para execução automática via GitHub Actions:
 
 ✅ Workflow: .github/workflows/test.yml
 
-✅ Executa npx cucumber-js em ambiente headless.
+✅ Executa npx cucumber-js em ambiente headless
+
+✅ Gera relatórios HTML e publica automaticamente via GitHub Pages
+Para verificar localmente execute  npm run report:generate após um teste.
+
+🔗 Acesse o relatório HTML gerado
 
 # 🏗️ Padrões e boas práticas aplicadas
 ✅ Page Object Model (POM) — para modularizar e facilitar manutenção.
