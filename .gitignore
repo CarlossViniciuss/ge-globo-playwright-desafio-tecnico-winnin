@@ -1,0 +1,25 @@
+# Dependências
+node_modules/
+
+#Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Relatórios Cucumber
+cucumber_report.html
+cucumber_report.json
+
+# IDE
+.idea/
+.vscode/
+.swp
+.swo
+
+# Logs
+.log
+
+# Sistema
+.DS_Store
+Thumbs.db
