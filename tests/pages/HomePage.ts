@@ -11,11 +11,11 @@ export class HomePage {
     this.blocosNoticias = page.locator('.bastian-feed-item[data-type="materia"]');
   }
 
-  async acessar() {
+  async access() {
     await this.page.goto('https://ge.globo.com');
   }
 
-  async contarNoticiasMinimas(qtd: number) {
+  async tellMinimalNews(qtd: number) {
     let tentativas = 0;
     const maxTentativas = 10;
 
@@ -34,7 +34,7 @@ export class HomePage {
     expect(quantidadeFinal).toBeGreaterThanOrEqual(qtd);
   }
 
-  async validarEstruturaNoticias() {
+  async validateStructureNews() {
     const total = await this.noticiasLocator.count();
 
     for (let i = 0; i < total; i++) {
@@ -56,7 +56,7 @@ export class HomePage {
     }
   }
 
-  async clicarPrimeiraNoticia(): Promise<string> {
+  async clickFirstNews(): Promise<string> {
     const totalBlocos = await this.blocosNoticias.count();
 
     for (let i = 0; i < totalBlocos; i++) {
