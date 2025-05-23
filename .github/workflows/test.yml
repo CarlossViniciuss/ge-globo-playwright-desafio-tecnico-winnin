@@ -36,9 +36,10 @@ jobs:
       - name: 📝 Generate HTML Report
         run: npm run report:generate
 
-      - name: 🚀 Deploy Report to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports/html
+          publish_dir: ./
+

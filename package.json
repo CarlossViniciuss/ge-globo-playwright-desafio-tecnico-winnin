@@ -11,6 +11,7 @@
     "test:report": "playwright show-report",
     "report:generate": "node generate-html-report.js",
     "report:open": "open cucumber_report.html"
+
   },
   "keywords": [
     "playwright",

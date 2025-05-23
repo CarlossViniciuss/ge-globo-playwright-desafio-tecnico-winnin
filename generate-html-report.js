@@ -1,17 +1,22 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const reporter = require('cucumber-html-reporter');
+const fs = require('fs');
 
-const options = {
+const reportPath = 'cucumber_report.html';
+
+const reportOptions = {
   theme: 'bootstrap',
   jsonFile: 'cucumber_report.json',
-  output: 'cucumber_report.html',
+  output: reportPath,
   reportSuiteAsScenarios: true,
-  launchReport: true,
+  launchReport: false,
   metadata: {
-    "Test Environment": "CI/CD",
-    "Browser": "Chromium",
-    "Platform": process.platform,
-    "Executed": "Automated"
+    "Platform": "GitHub Actions"
   }
 };
 
-reporter.generate(options);
+reporter.generate(reportOptions);
+
+fs.renameSync(reportPath, 'index.html');
+
+console.log('✅ Cucumber HTML report index.html generated successfully 👍');
