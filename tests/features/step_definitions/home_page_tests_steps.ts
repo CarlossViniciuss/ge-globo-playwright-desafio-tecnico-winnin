@@ -2,7 +2,8 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { setDefaultTimeout } from '@cucumber/cucumber';
 import { logger } from '../../utils/logger';
 
-setDefaultTimeout(30 * 1000);
+const TIMEOUT = process.env.CI ? 90000 : 30000;
+setDefaultTimeout(TIMEOUT);
 
 Given(/^que o usuário acessa a página inicial$/, async function () {
   logger.step('Acessando página inicial do GE');
