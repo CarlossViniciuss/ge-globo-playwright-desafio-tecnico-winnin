@@ -9,8 +9,9 @@
     "test:debug": "cucumber-js --format @cucumber/pretty-formatter --tags @debug",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
-    "report:generate": "node generate-html-report.js",
+    "report:generate": "ts-node generate-html-report.ts",
     "report:open": "open cucumber_report.html"
+
   },
   "keywords": [
     "playwright",
